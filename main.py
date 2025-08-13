@@ -21,6 +21,10 @@ app.include_router(indents.router, prefix="/indents", tags=["indents"])
 app.include_router(billing.router, prefix="/billing", tags=["billing"])
 app.include_router(bill_payment_status.router, prefix="/payment", tags=["billing"])
 
+app.route("/health")
+def health():
+    return {"status":"up"}
+
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
